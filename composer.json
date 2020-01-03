@@ -1,0 +1,26 @@
+{
+    "description": "TBP based JWT auth",
+    "authors": [
+        {
+            "name": "Bitendian S.L.",
+            "email": "info@bitendian.com",
+            "homepage": "http://www.bitendian.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:Bitendian/tbp.git"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt" : "*",
+        "bitendian/tbp": "1.0.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bitendian\\JWT\\Client\\": "App/Client/src/",
+            "Bitendian\\JWT\\Server\\": "App/Server/src/"
+        }
+    }
+}
