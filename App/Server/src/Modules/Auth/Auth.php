@@ -40,19 +40,22 @@ class Auth
 
     /**
      * @param string $token
+     * @return bool
      * @throws TBPException
      */
     public function checkToken($token)
     {
         if (empty($token)) {
-            throw new TBPException(_('Token can not be empty'));
+            throw new TBPException('Token can not be empty');
         }
 
         $decode = JWT::decode($token, $this->secretKey, [$this->encrypt]);
 
         if ($decode->aud !== $this->aud()) {
-            throw new TBPException(_('Invalid user'));
+            throw new TBPException('Invalid user');
         }
+
+        return true;
     }
 
     /**

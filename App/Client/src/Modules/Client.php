@@ -1,10 +1,11 @@
 <?php
 
-namespace Bitendian\JWT\Client\Modules\Client;
+namespace Bitendian\JWT\Client\Modules;
 
 class Client
 {
     private $token;
+    private $lastError;
 
     public function auth($url, $username, $password)
     {
@@ -14,6 +15,10 @@ class Client
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
+        if ($response === false) {
+            $this->lastError =  curl_error($ch);
+        }
+        curl_close($ch);
 
         return $response;
     }
@@ -25,8 +30,11 @@ class Client
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         $response = curl_exec($ch);
+        if ($response === false) {
+            $this->lastError =  curl_error($ch);
+        }
+        curl_close($ch);
 
         return $response;
     }
@@ -40,6 +48,9 @@ class Client
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
+        if ($response === false) {
+            $this->lastError =  curl_error($ch);
+        }
         curl_close($ch);
 
         return $response;
@@ -54,6 +65,9 @@ class Client
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         $response = curl_exec($ch);
+        if ($response === false) {
+            $this->lastError =  curl_error($ch);
+        }
         curl_close($ch);
 
         return $response;
@@ -67,10 +81,19 @@ class Client
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        $result = curl_exec($ch);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        if ($response === false) {
+            $this->lastError =  curl_error($ch);
+        }
         curl_close($ch);
 
-        return $result;
+        return $response;
+    }
+
+    public function getLastError()
+    {
+        return $this->lastError;
     }
 
     /**
@@ -96,5 +119,10 @@ class Client
         $url .= strpos($url, '?') !== false ? '' : '?';
         $url .= http_build_query(['username' => $username, 'password' => $password]);
         return $url;
+    }
+
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 }

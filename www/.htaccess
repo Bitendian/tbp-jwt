@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# When access root path ('/'), try to redirect to a landing page in function of browser language:
+# the 'Accept-Language' header starts with 'en' and the test is case-insensitive ([NC])
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Default routing:
+# if URL path does not exists in current folder ('www'), then execute 'index.php'
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+# else, if URL path exists, return target file (-f) or directory (-d)

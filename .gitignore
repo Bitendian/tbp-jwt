@@ -1,6 +1,6 @@
 # exclude every .config
-config/*.config
-config/*.conf
+#config/*.config
+#config/*.conf
 
 # composer files
 vendor/

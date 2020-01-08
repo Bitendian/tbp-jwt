@@ -1,0 +1,10 @@
+<h1>Token process</h1>
+
+<h2>Token generated:</h2>
+@@TOKEN@@
+
+<h2>Check token:</h2>
+<span style="color: @@CHECKCOLOR@@">@@CHECKMESSAGE@@</span>
+
+<h2>Data in token:</h2>
+@@DATAJSON@@
