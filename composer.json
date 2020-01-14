@@ -1,5 +1,11 @@
 {
-    "description": "TBP based JWT auth",
+    "name": "bitendian/tbp-jwt",
+    "type": "library",
+    "description": "Light JWT implementation for TBP",
+    "keywords": ["tbp", "client", "server", "rest", "jwt", "auth"],
+    "homepage": "http://www.bitendian.com/en/portfolio/tbp-5/",
+    "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Bitendian S.L.",
@@ -10,20 +16,20 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:Bitendian/tbp.git"
+            "url": "git@github.com:Bitendian/tbp-jwt.git"
         }
     ],
     "require": {
-        "firebase/php-jwt" : "*",
+        "php": ">=5.3.2",
         "bitendian/tbp": "1.0.18",
+        "firebase/php-jwt" : "*",
         "ext-curl": "*",
         "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
-            "Bitendian\\JWT\\Client\\": "App/Client/src/",
-            "Bitendian\\JWT\\Server\\": "App/Server/src/",
-            "Bitendian\\JWT\\Example\\": "App/Example/src/"
+            "Bitendian\\JWT\\Client\\": "src/Client/src/",
+            "Bitendian\\JWT\\Server\\": "src/Server/src/"
         }
     }
 }
