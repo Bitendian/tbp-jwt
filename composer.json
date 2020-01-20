@@ -17,7 +17,7 @@
         { "type": "vcs", "url": "git@github.com:Bitendian/tbp-jwt.git" }
     ],
     "require": {
-        "php": ">=5.3.2",
+        "php": ">=7.1",
         "bitendian/tbp": "1.0.18",
         "firebase/php-jwt" : "*",
         "ext-curl": "*",
